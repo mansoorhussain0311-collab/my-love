@@ -19,7 +19,7 @@
             padding: 20px 40px; font-size: 1.5rem;
             background: #fff; color: #ff4d6d;
             border: none; border-radius: 50px;
-            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             font-weight: bold; transition: 0.3s;
         }
 
@@ -34,9 +34,7 @@
         }
 
         .name { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 15px 0; font-weight: bold; }
-        h1 { font-size: 2rem; margin: 0; }
-        p { font-size: 1.2rem; line-height: 1.6; opacity: 0.9; }
-
+        
         .floating-heart {
             position: absolute; bottom: -50px;
             color: rgba(255, 255, 255, 0.5);
@@ -44,15 +42,13 @@
             pointer-events: none;
         }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <audio id="mySong" preload="auto" loop>
+    <audio id="mySong" loop>
         <source src="sitaare.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
     <button id="playBtn" onclick="startEverything()">Click to Hear My Heart ❤️</button>
@@ -62,31 +58,20 @@
         <h1>Happy Birthday</h1>
         <span class="name">Narmeen Amora</span>
         <h2>& Happy Valentine's Day</h2>
-        <p>To the girl who changed my world. You deserve all the love today!</p>
-        <p style="font-size: 0.9rem; margin-top: 20px;">14.02.2026</p>
+        <p style="font-size: 1.2rem;">To the girl who changed my world. You deserve all the love today!</p>
+        <p style="font-weight: bold; margin-top: 20px;">14.02.2026</p>
     </div>
 
     <script>
         function startEverything() {
             const audio = document.getElementById('mySong');
-            
-            // 1. Try to play music immediately
-            audio.play().then(() => {
-                console.log("Playback started successfully");
-            }).catch(error => {
-                console.log("Playback failed. Error: ", error);
-                // If it fails, we try one more time
-                audio.muted = false;
-                audio.play();
-            });
+            audio.play().catch(e => console.log("Audio failed, trying again."));
 
-            // 2. Hide button and show card
             document.getElementById('playBtn').style.display = 'none';
             const card = document.getElementById('mainCard');
             card.style.display = 'block';
             card.style.animation = "fadeIn 1.5s ease-out forwards";
 
-            // 3. Start floating hearts
             setInterval(createHeart, 300);
         }
 
