@@ -3,96 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To My Love | Birthday & Valentine's</title>
+    <title>For Narmeen Amora</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #d00000, #ff4d6d);
+            background: linear-gradient(135deg, #800000, #ff4d6d);
             font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            color: #fff;
+            overflow: hidden; color: #fff;
         }
 
-        .container {
-            text-align: center;
+        /* Music Button Styling */
+        #playBtn {
+            position: fixed; z-index: 100;
+            padding: 15px 30px; font-size: 1.2rem;
+            background: white; color: #ff4d6d;
+            border: none; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: bold; transition: 0.3s;
+        }
+        #playBtn:hover { transform: scale(1.1); background: #fff0f3; }
+
+        /* Card Styling - Hidden until button is clicked */
+        #mainCard {
+            display: none; text-align: center;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 25px;
+            padding: 40px; border-radius: 25px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 80%;
-            max-width: 450px;
-            z-index: 10;
+            width: 85%; max-width: 450px;
+            animation: fadeIn 2s ease-in;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        h2 { font-style: italic; opacity: 0.9; }
-        p { font-size: 1.2rem; line-height: 1.5; margin-top: 20px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .big-heart {
-            font-size: 80px;
-            animation: heartbeat 1.2s infinite;
-            display: block;
-            margin-bottom: 10px;
-        }
+        h1 { font-size: 2.2rem; margin: 10px 0; }
+        .name { font-size: 2.8rem; color: #fff; text-shadow: 0 0 10px #ff4d6d; display: block; margin: 15px 0; }
+        p { font-size: 1.2rem; line-height: 1.6; }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.3); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
-        }
+        .big-heart { font-size: 60px; animation: pulse 1.5s infinite; display: block; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
         .floating-heart {
-            position: absolute;
-            bottom: -50px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            animation: float Up 5s linear forwards;
-            pointer-events: none;
+            position: absolute; bottom: -50px;
+            color: rgba(255, 255, 255, 0.4);
+            animation: floatUp 5s linear forwards;
         }
-
-        @keyframes floatUp {
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+        @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <audio id="mySong" loop>
+        <source src="sitaare.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="playBtn" onclick="startCelebration()">Click to Open My Heart ❤️</button>
+
+    <div id="mainCard">
         <span class="big-heart">❤️</span>
-        <h1>Happy Birthday!</h1>
+        <h1>Happy Birthday</h1>
+        <span class="name">Narmeen Amora</span>
         <h2>& Happy Valentine's Day</h2>
-        <p>To the love of my life,<br>May your day be as beautiful and special as your heart is. I love you more every single day!</p>
-        <p style="font-weight: bold; font-size: 1.4rem;">14th February</p>
+        <p>To the most beautiful soul, you are my sun, my moon, and all my stars. I'm so lucky to have you today and every day.</p>
+        <p style="font-weight: bold;">14th February 2026</p>
     </div>
 
     <script>
+        function startCelebration() {
+            // Play Music
+            const audio = document.getElementById('mySong');
+            audio.play().catch(e => console.log("Audio play failed: ", e));
+
+            // Hide Button, Show Card
+            document.getElementById('playBtn').style.display = 'none';
+            document.getElementById('mainCard').style.display = 'block';
+
+            // Start Hearts
+            setInterval(createHeart, 250);
+        }
+
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
             heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            heart.style.opacity = Math.random();
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
-
-        setInterval(createHeart, 200);
     </script>
 </body>
 </html>
