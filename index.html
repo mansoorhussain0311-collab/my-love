@@ -3,87 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Narmeen Amora</title>
+    <title>For Dr. Narmeen</title>
     <style>
         body {
             margin: 0; padding: 0;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #800000, #ff4d6d);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4b0000, #ff4d6d);
+            font-family: 'Georgia', serif;
             overflow: hidden; color: #fff;
         }
 
         #playBtn {
             position: fixed; z-index: 100;
-            padding: 20px 40px; font-size: 1.5rem;
+            padding: 20px 40px; font-size: 1.4rem;
             background: #fff; color: #ff4d6d;
             border: none; border-radius: 50px;
-            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             font-weight: bold; transition: 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
         }
 
         #mainCard {
             display: none; text-align: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            padding: 40px; border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            width: 85%; max-width: 450px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 50px 30px; border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 90%; max-width: 500px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
-        .name { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 15px 0; font-weight: bold; }
+        .name { font-size: 3rem; color: #ffb3c1; text-shadow: 0 0 20px #ff4d6d; display: block; margin: 10px 0; font-family: 'Times New Roman', serif; }
+        h1 { font-size: 1.8rem; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+        h2 { font-size: 1.4rem; opacity: 0.8; font-weight: 300; margin-bottom: 20px; }
         
+        .message {
+            font-size: 1.15rem; line-height: 1.8; font-style: italic;
+            margin: 20px 0; color: #ffe5ec;
+        }
+
+        .closing {
+            margin-top: 30px; font-size: 1.1rem; border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px; color: #ffb3c1;
+        }
+
         .floating-heart {
             position: absolute; bottom: -50px;
-            color: rgba(255, 255, 255, 0.5);
-            animation: floatUp 5s linear forwards;
+            color: rgba(255, 179, 193, 0.6);
+            animation: floatUp 6s linear forwards;
             pointer-events: none;
         }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <audio id="mySong" loop>
-        <source src="sitaare.mp3" type="audio/mpeg">
+    <audio id="mySong" loop preload="auto">
+        <source src="./sitaare.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="playBtn" onclick="startEverything()">Click to Hear My Heart ❤️</button>
+    <button id="playBtn" onclick="startEverything()">Tap to Open Your Heart ❤️</button>
 
     <div id="mainCard">
-        <h1 style="font-size: 50px;">💝</h1>
+        <h1 style="font-size: 40px; margin-bottom: 10px;">🌹</h1>
         <h1>Happy Birthday</h1>
-        <span class="name">Narmeen Amora</span>
-        <h2>& Happy Valentine's Day</h2>
-        <p style="font-size: 1.2rem;">To the girl who changed my world. You deserve all the love today!</p>
-        <p style="font-weight: bold; margin-top: 20px;">14.02.2026</p>
+        <span class="name">Dr. Narmeen</span>
+        <h2>& My Forever Valentine</h2>
+        
+        <div class="message">
+            "To the woman who heals hearts with her profession and fills mine with her love. 
+            On this special day, 14th of February, the world celebrates love, but I celebrate 
+            the day you were born. You are my greatest blessing, my calm in every storm, 
+            and the melody in my life’s song. Happy Birthday, my beautiful wife."
+        </div>
+
+        <div class="closing">
+            With all my love, always,<br>
+            <strong>Your Husband, Mansoor Hussain</strong>
+        </div>
+        
+        <p style="font-size: 0.8rem; margin-top: 25px; opacity: 0.6;">14.02.2026</p>
     </div>
 
     <script>
         function startEverything() {
             const audio = document.getElementById('mySong');
-            audio.play().catch(e => console.log("Audio failed, trying again."));
+            audio.load();
+            audio.play().catch(e => {
+                alert("Click OK to hear the music! ❤️");
+                audio.play();
+            });
 
             document.getElementById('playBtn').style.display = 'none';
             const card = document.getElementById('mainCard');
             card.style.display = 'block';
-            card.style.animation = "fadeIn 1.5s ease-out forwards";
+            card.style.animation = "fadeIn 1.8s ease-out forwards";
 
-            setInterval(createHeart, 300);
+            setInterval(createHeart, 250);
         }
 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
             document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
+            setTimeout(() => { heart.remove(); }, 6000);
         }
     </script>
 </body>
