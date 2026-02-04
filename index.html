@@ -3,83 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Dr. Narmeen | From Mansoor</title>
+    <title>For Narmeen Amora</title>
     <style>
         body {
             margin: 0; padding: 0;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh;
-            background: radial-gradient(circle, #4b0000 0%, #1a0000 100%);
-            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #800000, #ff4d6d);
+            font-family: 'Arial', sans-serif;
             overflow: hidden; color: #fff;
         }
 
+        #playBtn {
+            position: fixed; z-index: 100;
+            padding: 20px 40px; font-size: 1.5rem;
+            background: #fff; color: #ff4d6d;
+            border: none; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            font-weight: bold; transition: 0.3s;
+        }
+
         #mainCard {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 40px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            z-index: 10;
+            display: none; text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 40px; border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 85%; max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 10px 0; }
+        .name { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 15px 0; font-weight: bold; }
         
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #fff;
-            color: #4b0000;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
         .floating-heart {
             position: absolute; bottom: -50px;
-            color: rgba(255, 179, 193, 0.4);
-            animation: floatUp 6s linear forwards;
+            color: rgba(255, 255, 255, 0.5);
+            animation: floatUp 5s linear forwards;
             pointer-events: none;
         }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <audio id="mySong" loop>
-        <source src="Sitaare Ikkis 320 Kbps.mp3" type="audio/mpeg">
+        <source src="sitaare.mp3" type="audio/mpeg">
     </audio>
 
+    <button id="playBtn" onclick="startEverything()">Click to Hear My Heart ❤️</button>
+
     <div id="mainCard">
-        <h2 style="font-weight: 300; font-style: italic;">In the silence of the night, a heartbeat speaks your name...</h2>
-        <h1 style="margin-top: 20px;">Happy Birthday</h1>
-        <span class="name">Dr. Narmeen</span>
-        <h3 style="font-weight: 300; opacity: 0.8;">& My Forever Valentine</h3>
-        
-        <p style="line-height: 1.6; font-style: italic; margin: 20px 0;">
-            "To the woman who heals hearts with her profession and fills mine with her love. 
-            I celebrate the day you were born as my greatest blessing."
-        </p>
-
-        <button onclick="playMusic()">Click for our Song ❤️</button>
-
-        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
-            With all my love,<br>
-            <strong>Your Husband, Mansoor Hussain</strong>
-        </div>
+        <h1 style="font-size: 50px;">💝</h1>
+        <h1>Happy Birthday</h1>
+        <span class="name">Narmeen Amora</span>
+        <h2>& Happy Valentine's Day</h2>
+        <p style="font-size: 1.2rem;">To the girl who changed my world. You deserve all the love today!</p>
+        <p style="font-weight: bold; margin-top: 20px;">14.02.2026</p>
     </div>
 
     <script>
-        function playMusic() {
+        function startEverything() {
             const audio = document.getElementById('mySong');
-            audio.play();
-            alert("I love you, Dr. Narmeen! ❤️");
+            audio.play().catch(e => console.log("Audio failed, trying again."));
+
+            document.getElementById('playBtn').style.display = 'none';
+            const card = document.getElementById('mainCard');
+            card.style.display = 'block';
+            card.style.animation = "fadeIn 1.5s ease-out forwards";
+
+            setInterval(createHeart, 300);
         }
 
         function createHeart() {
@@ -87,12 +80,11 @@
             heart.classList.add('floating-heart');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
             document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 6000);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
-        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
