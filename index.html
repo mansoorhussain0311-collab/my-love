@@ -3,88 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Narmeen Amora</title>
+    <title>For Dr. Narmeen | From Mansoor</title>
     <style>
-        body {
+        body, html {
             margin: 0; padding: 0;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #800000, #ff4d6d);
-            font-family: 'Arial', sans-serif;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, #4b0000 0%, #1a0000 100%);
+            font-family: 'Georgia', serif;
             overflow: hidden; color: #fff;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        #playBtn {
-            position: fixed; z-index: 100;
-            padding: 20px 40px; font-size: 1.5rem;
-            background: #fff; color: #ff4d6d;
-            border: none; border-radius: 50px;
-            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            font-weight: bold; transition: 0.3s;
+        /* Message Box Styling */
+        .message-container {
+            text-align: center;
+            max-width: 85%;
+            z-index: 10;
         }
 
-        #mainCard {
-            display: none; text-align: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            padding: 40px; border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            width: 85%; max-width: 450px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        .romantic-text {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #ff4d6d;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        .name { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 15px 0; font-weight: bold; }
-        
+        .next-btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            background: white;
+            color: #4b0000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+        }
+
+        .next-btn:hover { transform: scale(1.1); }
+
+        /* Final Card - Hidden Initially */
+        #finalCard {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: finalFade 2s ease-in-out;
+        }
+
+        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 10px 0; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes finalFade { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
         .floating-heart {
             position: absolute; bottom: -50px;
-            color: rgba(255, 255, 255, 0.5);
-            animation: floatUp 5s linear forwards;
+            color: rgba(255, 179, 193, 0.5);
+            animation: floatUp 6s linear forwards;
             pointer-events: none;
         }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <audio id="mySong" loop>
-        <source src="sitaare.mp3" type="audio/mpeg">
-    </audio>
-
-    <button id="playBtn" onclick="startEverything()">Click to Hear My Heart ❤️</button>
-
-    <div id="mainCard">
-        <h1 style="font-size: 50px;">💝</h1>
-        <h1>Happy Birthday</h1>
-        <span class="name">Narmeen Amora</span>
-        <h2>& Happy Valentine's Day</h2>
-        <p style="font-size: 1.2rem;">To the girl who changed my world. You deserve all the love today!</p>
-        <p style="font-weight: bold; margin-top: 20px;">14.02.2026</p>
-    </div>
-
-    <script>
-        function startEverything() {
-            const audio = document.getElementById('mySong');
-            audio.play().catch(e => console.log("Audio failed, trying again."));
-
-            document.getElementById('playBtn').style.display = 'none';
-            const card = document.getElementById('mainCard');
-            card.style.display = 'block';
-            card.style.animation = "fadeIn 1.5s ease-out forwards";
-
-            setInterval(createHeart, 300);
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-    </script>
-</body>
-</html>
+        <source src="Sitaare Ikkis 3
+            
