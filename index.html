@@ -5,28 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Dr. Narmeen | From Mansoor</title>
     <style>
+        /* Animated Background Theme */
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle, #4b0000 0%, #1a0000 100%);
-            font-family: 'Georgia', serif;
-            overflow: hidden; color: #fff;
             display: flex; justify-content: center; align-items: center;
+            font-family: 'Georgia', serif;
+            color: #fff;
+            overflow: hidden;
+            /* Theme changes colors over 15 seconds */
+            background: linear-gradient(45deg, #1a0000, #4b0000, #800000, #4b0000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .content-box {
             text-align: center;
-            max-width: 85%;
+            width: 85%;
+            max-width: 500px;
             z-index: 10;
         }
 
-        .romantic-text {
-            font-size: 1.5rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px #ff4d6d;
-            font-style: italic;
-            min-height: 120px;
+        /* Fixed the height issue for Mobile */
+        #finalCard {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 30px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 85vh; /* Prevents cutting off */
+            overflow-y: auto; /* Adds scroll if text is too long */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            animation: finalFade 2s ease-in-out;
+        }
+
+        .name { 
+            font-size: 2.4rem; 
+            color: #ffb3c1; 
+            text-shadow: 0 0 15px #ff4d6d; 
+            display: block; 
+            margin: 10px 0; 
+        }
+        
+        .long-message {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #ffe5ec;
+            margin: 15px 0;
         }
 
         .action-btn {
@@ -38,28 +70,7 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             text-transform: uppercase;
-        }
-
-        #finalCard {
-            display: none;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            padding: 40px 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 550px;
-        }
-
-        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 20px #ff4d6d; display: block; margin: 15px 0; }
-        
-        .long-message {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #ffe5ec;
-            margin: 20px 0;
-            text-align: center;
         }
 
         .floating-heart {
@@ -69,6 +80,7 @@
             pointer-events: none;
         }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        @keyframes finalFade { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -78,29 +90,28 @@
     </audio>
 
     <div id="wrapper" class="content-box">
-        <p id="mainText" class="romantic-text">
+        <p id="mainText" style="font-size: 1.4rem; font-style: italic; margin-bottom: 30px;">
             "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul..."
         </p>
         <button id="mainBtn" class="action-btn" onclick="processClick()">Keep Reading...</button>
     </div>
 
-    <div id="finalCard" class="content-box">
-        <h1 style="font-size: 40px; margin: 0;">🌹</h1>
-        <h1 style="letter-spacing: 2px; text-transform: uppercase;">Happy Birthday</h1>
+    <div id="finalCard">
+        <h1 style="font-size: 35px; margin: 0;">🌹</h1>
+        <h2 style="letter-spacing: 2px; text-transform: uppercase; margin: 10px 0;">Happy Birthday</h2>
         <span class="name">Dr. Narmeen</span>
-        <h3 style="font-weight: 300; color: #ffb3c1; letter-spacing: 1px;">& My Forever Valentine</h3>
+        <h4 style="font-weight: 300; color: #ffb3c1; margin-bottom: 15px;">& My Forever Valentine</h4>
         
         <div class="long-message">
             "To my brilliant and beautiful wife—while you spend your days with selfless dedication, caring for the hearts of so many others, know that you are the absolute owner of mine. You are not just my partner, but my greatest blessing, my calm in every storm, and the most beautiful melody in my life's song. 
             <br><br>
-            On this special day, as the world celebrates love, I celebrate the day you were born—the moment my world truly found its light. I am so incredibly proud of the woman you are and the life we are building together. May your year be as extraordinary and full of wonder as the love you give to me every day."
+            On this special day, as the world celebrates love, I celebrate the day you were born—the moment my world truly found its light. I am so incredibly proud of the woman you are. May your year be as extraordinary as the love you give to me every day."
         </div>
 
-        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+        <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; padding-bottom: 10px;">
             With all my love, always and forever,<br>
-            <strong style="font-size: 1.3rem;">Your Husband, Mansoor Hussain</strong>
+            <strong style="font-size: 1.2rem;">Your Husband, Mansoor Hussain</strong>
         </div>
-        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.5;">14.02.2026</p>
     </div>
 
     <script>
@@ -114,18 +125,11 @@
 
         function processClick() {
             const audio = document.getElementById('mySong');
-            const textElement = document.getElementById('mainText');
-            const btnElement = document.getElementById('mainBtn');
-
-            if (step === 1) {
-                audio.play().catch(e => console.log("Audio waiting for user gesture."));
-            }
-
+            if (step === 1) { audio.play().catch(e => {}); }
             step++;
-
             if (step <= 3) {
-                textElement.innerText = messages[step];
-                if (step === 3) btnElement.innerText = "See Your Surprise ❤️";
+                document.getElementById('mainText').innerText = messages[step];
+                if (step === 3) document.getElementById('mainBtn').innerText = "See Your Surprise ❤️";
             } else {
                 document.getElementById('wrapper').style.display = 'none';
                 document.getElementById('finalCard').style.display = 'block';
@@ -138,7 +142,7 @@
             heart.classList.add('floating-heart');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
             heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
             document.body.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 6000);
