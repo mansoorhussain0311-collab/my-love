@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Dr. Narmeen | From Mansoor</title>
     <style>
-        /* Smoothly Changing Background Theme */
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
@@ -13,17 +12,17 @@
             font-family: 'Georgia', serif;
             color: #fff;
             overflow: hidden;
-            /* Animation for smooth transition */
+            /* Smooth background transition */
             animation: smoothCycle 12s ease-in-out infinite;
             background-size: 400% 400%;
         }
 
         @keyframes smoothCycle {
-            0%   { background-color: #800000; } /* Deep Red */
-            25%  { background-color: #ff4d6d; } /* Soft Pink */
-            50%  { background-color: #000000; } /* Elegant Black */
-            75%  { background-color: #001f3f; } /* Romantic Blue */
-            100% { background-color: #800000; } /* Back to Red */
+            0%   { background-color: #800000; } /* Red */
+            25%  { background-color: #ff4d6d; } /* Pink */
+            50%  { background-color: #000000; } /* Black */
+            75%  { background-color: #001f3f; } /* Blue */
+            100% { background-color: #800000; } /* Red */
         }
 
         .content-box {
@@ -33,36 +32,20 @@
             z-index: 10;
         }
 
-        /* Card with glass effect and scroll for mobile */
         #finalCard {
             display: none;
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(15px);
             padding: 30px 20px;
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-height: 80vh; 
-            overflow-y: auto; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            animation: fadeIn 2s ease-in;
+            overflow-y: auto;
+            animation: fadeIn 1s ease-in;
         }
 
-        .name { 
-            font-size: 2.5rem; 
-            color: #ffb3c1; 
-            text-shadow: 0 0 15px #ff4d6d; 
-            display: block; 
-            margin: 10px 0; 
-            font-weight: bold;
-        }
+        .name { font-size: 2.5rem; color: #ffb3c1; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 10px 0; font-weight: bold; }
         
-        .long-message {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ffffff;
-            margin: 15px 0;
-        }
-
         .action-btn {
             padding: 15px 35px;
             font-size: 1.1rem;
@@ -74,10 +57,7 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: 0.3s;
         }
-
-        .action-btn:active { transform: scale(0.95); }
 
         .floating-heart {
             position: absolute; bottom: -50px;
@@ -100,14 +80,74 @@
         <p id="mainText" style="font-size: 1.5rem; font-style: italic; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);">
             "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul..."
         </p>
-        <button id="mainBtn" class="action-btn" onclick="processClick()">Keep Reading...</button>
+        <button id="mainBtn" class="action-btn">Keep Reading...</button>
     </div>
 
-    <div id="finalCard">
+    <div id="finalCard" class="content-box">
         <h1 style="font-size: 35px; margin: 0;">🌹</h1>
         <h2 style="letter-spacing: 2px; text-transform: uppercase; margin: 10px 0;">Happy Birthday</h2>
         <span class="name">Dr. Narmeen</span>
         <h4 style="font-weight: 300; color: #ffb3c1; margin-bottom: 15px;">& My Forever Valentine</h4>
         
-        <div class="long-message">
-            "To my brilliant and beautiful wife—while you spend your days with selfless dedication, caring for the hearts of so many
+        <div style="font-size: 1.1rem; line-height: 1.8; color: #ffffff; margin: 15px 0;">
+            "To my brilliant and beautiful wife—while you spend your days with selfless dedication, caring for the hearts of so many others, know that you are the absolute owner of mine. You are not just my partner, but my greatest blessing, my calm in every storm, and the most beautiful melody in my life's song. 
+            <br><br>
+            On this special day, as the world celebrates love, I celebrate the day you were born—the moment my world truly found its light. I am so incredibly proud of the woman you are. May your year be as extraordinary as the love you give to me every day."
+        </div>
+
+        <div style="margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.4); padding-top: 20px;">
+            With all my love, always and forever,<br>
+            <strong style="font-size: 1.4rem; color: #ffb3c1;">Your Husband, Mansoor Hussain</strong>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const btn = document.getElementById('mainBtn');
+        const txt = document.getElementById('mainText');
+        const audio = document.getElementById('mySong');
+
+        const phrases = [
+            "", 
+            "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul...",
+            "In the busy rhythm of your life, saving lives and caring for others, thank you for choosing my heart to be your home every single day.",
+            "Today, the stars shine a little brighter, just to celebrate the most intelligent, kind, and beautiful woman I have ever known..."
+        ];
+
+        btn.addEventListener('click', function() {
+            // Start Music on first click
+            if (currentStep === 1) {
+                audio.play();
+            }
+
+            currentStep++;
+
+            if (currentStep <= 3) {
+                // Change Text
+                txt.innerText = phrases[currentStep];
+                // Change button text on the last click
+                if (currentStep === 3) {
+                    btn.innerText = "See Your Surprise ❤️";
+                }
+            } else {
+                // Show Card
+                document.getElementById('wrapper').style.display = 'none';
+                document.getElementById('finalCard').style.display = 'block';
+                // Start Hearts
+                setInterval(createHeart, 300);
+            }
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+    </script>
+</body>
+</html>
