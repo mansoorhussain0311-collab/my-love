@@ -5,53 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Dr. Narmeen | From Mansoor</title>
     <style>
-        body, html {
+        body {
             margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background: #1a0000;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle, #4b0000 0%, #1a0000 100%);
             font-family: 'Georgia', serif;
             overflow: hidden; color: #fff;
         }
 
-        /* Initial Dynamic Entrance */
-        #entrance {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #4b0000 0%, #000000 100%);
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; z-index: 100; cursor: pointer;
-            transition: opacity 2s ease-out;
-        }
-
-        .dynamic-text {
-            text-align: center; max-width: 80%;
-            animation: glow 3s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ff4d6d; opacity: 0.8; }
-            to { text-shadow: 0 0 30px #ff4d6d, 0 0 10px #ffb3c1; opacity: 1; }
-        }
-
-        .tap-prompt {
-            margin-top: 30px; font-size: 0.9rem; letter-spacing: 3px;
-            text-transform: uppercase; opacity: 0.6; animation: blink 2s infinite;
-        }
-
-        @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.8; } }
-
-        /* Main Card (Hidden initially) */
-        #mainContainer {
-            display: none; width: 100%; height: 100vh;
-            justify-content: center; align-items: center;
-            background: linear-gradient(135deg, #4b0000, #ff4d6d);
-        }
-
         #mainCard {
-            text-align: center; background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px); padding: 50px 30px;
-            border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 90%; max-width: 500px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            animation: scaleIn 1.5s ease-out forwards;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
-        @keyframes
+        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 15px #ff4d6d; display: block; margin: 10px 0; }
+        
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #fff;
+            color: #4b0000;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .floating-heart {
+            position: absolute; bottom: -50px;
+            color: rgba(255, 179, 193, 0.4);
+            animation: floatUp 6s linear forwards;
+            pointer-events: none;
+        }
+        @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="mySong" loop>
+        <source src="Sitaare Ikkis 320 Kbps.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="mainCard">
+        <h2 style="font-weight: 300; font-style: italic;">In the silence of the night, a heartbeat speaks your name...</h2>
+        <h1 style="margin-top: 20px;">Happy Birthday</h1>
+        <span class="name">Dr. Narmeen</span>
+        <h3 style="font-weight: 300; opacity: 0.8;">& My Forever Valentine</h3>
+        
+        <p style="line-height: 1.6; font-style: italic; margin: 20px 0;">
+            "To the woman who heals hearts with her profession and fills mine with her love. 
+            I celebrate the day you were born as my greatest blessing."
+        </p>
+
+        <button onclick="playMusic()">Click for our Song ❤️</button>
+
+        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+            With all my love,<br>
+            <strong>Your Husband, Mansoor Hussain</strong>
+        </div>
+    </div>
+
+    <script>
+        function playMusic() {
+            const audio = document.getElementById('mySong');
+            audio.play();
+            alert("I love you, Dr. Narmeen! ❤️");
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
