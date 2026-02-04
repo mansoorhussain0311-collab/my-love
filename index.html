@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Dr. Narmeen | From Mansoor</title>
     <style>
-        /* Rapidly Changing Background Theme */
+        /* Smoothly Changing Background Theme */
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
@@ -13,16 +13,16 @@
             font-family: 'Georgia', serif;
             color: #fff;
             overflow: hidden;
-            /* Animation set to change every 4 seconds (1s per color) */
-            animation: colorCycle 4s infinite;
-            transition: background 0.5s ease-in-out;
+            /* Animation for smooth transition */
+            animation: smoothCycle 12s ease-in-out infinite;
+            background-size: 400% 400%;
         }
 
-        @keyframes colorCycle {
+        @keyframes smoothCycle {
             0%   { background-color: #800000; } /* Deep Red */
-            25%  { background-color: #ff4d6d; } /* Vibrant Pink */
-            50%  { background-color: #000000; } /* Deep Black */
-            75%  { background-color: #001f3f; } /* Midnight Blue */
+            25%  { background-color: #ff4d6d; } /* Soft Pink */
+            50%  { background-color: #000000; } /* Elegant Black */
+            75%  { background-color: #001f3f; } /* Romantic Blue */
             100% { background-color: #800000; } /* Back to Red */
         }
 
@@ -33,22 +33,22 @@
             z-index: 10;
         }
 
-        /* Final Card with Mobile Scrolling Fix */
+        /* Card with glass effect and scroll for mobile */
         #finalCard {
             display: none;
-            background: rgba(0, 0, 0, 0.4); /* Darker overlay for better text reading */
+            background: rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(15px);
             padding: 30px 20px;
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            max-height: 85vh; 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 80vh; 
             overflow-y: auto; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            animation: finalFade 1.5s ease-out;
+            animation: fadeIn 2s ease-in;
         }
 
         .name { 
-            font-size: 2.4rem; 
+            font-size: 2.5rem; 
             color: #ffb3c1; 
             text-shadow: 0 0 15px #ff4d6d; 
             display: block; 
@@ -57,11 +57,10 @@
         }
         
         .long-message {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #ffffff;
             margin: 15px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .action-btn {
@@ -75,17 +74,20 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
+
+        .action-btn:active { transform: scale(0.95); }
 
         .floating-heart {
             position: absolute; bottom: -50px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.5);
             animation: floatUp 6s linear forwards;
             pointer-events: none;
         }
 
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-        @keyframes finalFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -95,7 +97,7 @@
     </audio>
 
     <div id="wrapper" class="content-box">
-        <p id="mainText" style="font-size: 1.5rem; font-style: italic; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">
+        <p id="mainText" style="font-size: 1.5rem; font-style: italic; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);">
             "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul..."
         </p>
         <button id="mainBtn" class="action-btn" onclick="processClick()">Keep Reading...</button>
@@ -108,50 +110,4 @@
         <h4 style="font-weight: 300; color: #ffb3c1; margin-bottom: 15px;">& My Forever Valentine</h4>
         
         <div class="long-message">
-            "To my brilliant and beautiful wife—while you spend your days with selfless dedication, caring for the hearts of so many others, know that you are the absolute owner of mine. You are not just my partner, but my greatest blessing, my calm in every storm, and the most beautiful melody in my life's song. 
-            <br><br>
-            On this special day, as the world celebrates love, I celebrate the day you were born—the moment my world truly found its light. I am so incredibly proud of the woman you are. May your year be as extraordinary as the love you give to me every day."
-        </div>
-
-        <div style="margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.4); padding-top: 20px; padding-bottom: 10px;">
-            With all my love, always and forever,<br>
-            <strong style="font-size: 1.3rem; color: #ffb3c1;">Your Husband, Mansoor Hussain</strong>
-        </div>
-    </div>
-
-    <script>
-        let step = 1;
-        const messages = [
-            "", 
-            "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul...",
-            "In the busy rhythm of your life, saving lives and caring for others, thank you for choosing my heart to be your home every single day.",
-            "Today, the stars shine a little brighter, just to celebrate the most intelligent, kind, and beautiful woman I have ever known..."
-        ];
-
-        function processClick() {
-            const audio = document.getElementById('mySong');
-            if (step === 1) { audio.play().catch(e => console.log("Music ready.")); }
-            step++;
-            if (step <= 3) {
-                document.getElementById('mainText').innerText = messages[step];
-                if (step === 3) document.getElementById('mainBtn').innerText = "See Your Surprise ❤️";
-            } else {
-                document.getElementById('wrapper').style.display = 'none';
-                document.getElementById('finalCard').style.display = 'block';
-                setInterval(createHeart, 300);
-            }
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 6000);
-        }
-    </script>
-</body>
-</html>
+            "To my brilliant and beautiful wife—while you spend your days with selfless dedication, caring for the hearts of so many
