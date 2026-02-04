@@ -14,11 +14,10 @@
             display: flex; justify-content: center; align-items: center;
         }
 
-        .message-container {
+        .content-box {
             text-align: center;
             max-width: 85%;
             z-index: 10;
-            animation: fadeIn 1.5s ease-in-out;
         }
 
         .romantic-text {
@@ -27,9 +26,10 @@
             margin-bottom: 30px;
             text-shadow: 0 0 10px #ff4d6d;
             font-style: italic;
+            min-height: 100px;
         }
 
-        .next-btn {
+        .action-btn {
             padding: 15px 35px;
             font-size: 1rem;
             background: white;
@@ -40,32 +40,19 @@
             font-weight: bold;
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         #finalCard {
             display: none;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
-            padding: 50px 30px;
+            padding: 40px 20px;
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-            animation: finalFade 2.5s ease-in-out;
         }
 
-        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 20px #ff4d6d; display: block; margin: 15px 0; font-weight: bold; }
+        .name { font-size: 2.8rem; color: #ffb3c1; text-shadow: 0 0 20px #ff4d6d; display: block; margin: 15px 0; }
         
-        .long-message {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #ffe5ec;
-            margin: 25px 0;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes finalFade { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
         .floating-heart {
             position: absolute; bottom: -50px;
             color: rgba(255, 179, 193, 0.4);
@@ -78,22 +65,73 @@
 <body>
 
     <audio id="mySong" loop preload="auto">
-        <source src="Sitaare Ikkis 320 Kbps.mp3" type="audio/mpeg">
+        <source src="sitaare.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="step1" class="message-container">
-        <p class="romantic-text">"They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul..."</p>
-        <button class="next-btn" onclick="nextStep(1)">Keep Reading...</button>
+    <div id="wrapper" class="content-box">
+        <p id="mainText" class="romantic-text">
+            "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul..."
+        </p>
+        <button id="mainBtn" class="action-btn" onclick="processClick()">Keep Reading...</button>
     </div>
 
-    <div id="step2" class="message-container" style="display:none;">
-        <p class="romantic-text">"In the busy rhythm of your life, saving lives and caring for others, thank you for choosing my heart to be your home."</p>
-        <button class="next-btn" onclick="nextStep(2)">Almost there...</button>
+    <div id="finalCard" class="content-box">
+        <h1 style="font-size: 40px; margin: 0;">🌹</h1>
+        <h1 style="letter-spacing: 2px; text-transform: uppercase;">Happy Birthday</h1>
+        <span class="name">Dr. Narmeen</span>
+        <h3 style="font-weight: 300; color: #ffb3c1;">& My Forever Valentine</h3>
+        <p style="font-style: italic; margin: 20px 0; line-height: 1.8;">
+            "To my brilliant wife—while you spend your days caring for the hearts of many, know that you are the sole owner of mine. You are my greatest blessing and my life's greatest gift."
+        </p>
+        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+            With all my love, always,<br>
+            <strong style="font-size: 1.3rem;">Your Husband, Mansoor Hussain</strong>
+        </div>
     </div>
 
-    <div id="step3" class="message-container" style="display:none;">
-        <p class="romantic-text">"Today, the stars shine a little brighter, just to celebrate the most beautiful woman I have ever known..."</p>
-        <button class="next-btn" onclick="nextStep(3)">See Your Surprise ❤️</button>
-    </div>
+    <script>
+        let step = 1;
+        const messages = [
+            "", // Index 0 not used
+            "They say a doctor's touch has the power to heal the world, but your love is the only medicine that has ever truly healed my soul...",
+            "In the busy rhythm of your life, saving lives and caring for others, thank you for choosing my heart to be your home.",
+            "Today, the stars shine a little brighter, just to celebrate the most beautiful woman I have ever known..."
+        ];
 
-    <div id="finalCard"
+        function processClick() {
+            const audio = document.getElementById('mySong');
+            const textElement = document.getElementById('mainText');
+            const btnElement = document.getElementById('mainBtn');
+
+            // Play music on first click
+            if (step === 1) {
+                audio.play().catch(e => console.log("Audio waiting for user."));
+            }
+
+            step++;
+
+            if (step <= 3) {
+                // Change the message text
+                textElement.innerText = messages[step];
+                if (step === 3) btnElement.innerText = "See Your Surprise ❤️";
+            } else {
+                // Show final card
+                document.getElementById('wrapper').style.display = 'none';
+                document.getElementById('finalCard').style.display = 'block';
+                setInterval(createHeart, 300);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+    </script>
+</body>
+</html>
